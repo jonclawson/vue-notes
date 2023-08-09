@@ -5,6 +5,7 @@
     v-bind:type="type"
   >
     {{ name }}
+    <slot></slot>
   </button>
 </template>
 

@@ -4,9 +4,9 @@
       class="list-group-item d-flex justify-content-between"
       v-for="item in items"
     >
-      <span @click="$emit('clickItem', item)"
+      <Button @clickButton="() => $emit('clickItem', item)" 
         >{{ item.id }} {{ item.message }}
-      </span>
+      </Button>
       <Button
         @clickButton="() => removeNote(item)"
         className="btn-sm btn-danger"
