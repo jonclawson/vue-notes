@@ -12,13 +12,14 @@
     <div class="d-flex justify-content-end">
       <Button
         @clickButton="$emit('cancel')"
+        @click="reset"
         className="btn-sm btn-secondary"
         type="button"
         name="Cancel"
       />
       <Button
         @clickButton="$emit('save', note)"
-        @click="save"
+        @click="reset"
         className="btn-sm btn-danger"
         type="button"
         name="Save"
@@ -42,9 +43,9 @@ export default {
     };
   },
   methods: {
-    save() {
-      this.note = {message: ''}
-    }
-  }
+    reset() {
+      this.note = { message: '' };
+    },
+  },
 };
 </script>

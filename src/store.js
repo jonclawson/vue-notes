@@ -8,6 +8,9 @@ export const useNoteStore = defineStore('notes', {
   },
   actions: {
     addNote(payload) {
+      if (!payload.id) {
+        payload.id = (this.notes[this.notes.length - 1]?.id || 0) + 1;
+      }
       this.notes.push(payload);
     },
     updateNote(payload) {

@@ -12,31 +12,6 @@
     <List v-bind:items="store.notes" />
     <dialog :open="edit">
       <NoteForm @cancel="cancelNote" @save="saveNote" />
-      <!-- <div>
-        <div>
-          <label>Take Note:</label>
-          <input
-            class="form-control"
-            type="text"
-            name="message"
-            v-model="message"
-          />
-        </div>
-        <div class="d-flex justify-content-end">
-          <Button
-            @clickButton="() => cancelNote(message)"
-            className="btn-sm btn-secondary"
-            type="button"
-            name="Cancel"
-          />
-          <Button
-            @clickButton="() => saveNote(message)"
-            className="btn-sm btn-danger"
-            type="button"
-            name="Save"
-          />
-        </div>
-      </div> -->
     </dialog>
   </div>
 </template>
@@ -60,7 +35,6 @@ export default {
     return {
       store: useNoteStore(),
       edit: false,
-      message: '',
     };
   },
   methods: {
@@ -68,15 +42,10 @@ export default {
       this.edit = true;
     },
     saveNote(note) {
-      if (!note.id) {
-        note.id = (this.store.notes[this.store.notes.length - 1]?.id || 0) + 1;
-      }
       this.store.addNote(note);
-      this.message = '';
       this.edit = false;
     },
     cancelNote() {
-      this.message = '';
       this.edit = false;
     },
   },
