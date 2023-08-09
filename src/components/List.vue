@@ -1,7 +1,7 @@
 <template>
   <ul class="list-group">
     <li class="list-group-item d-flex justify-content-between" v-for="item in items">
-      {{ item.message }} <Button @clickButton="() => removeNote(item)" className="btn-sm btn-danger" name="x" type="button" />
+      {{item.id}} {{ item.message }} <Button @clickButton="() => removeNote(item)" className="btn-sm btn-danger" name="x" type="button" />
     </li>
   </ul>
 </template>

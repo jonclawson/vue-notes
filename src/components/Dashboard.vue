@@ -11,7 +11,8 @@
     </h1>
     <List v-bind:items="store.notes" />
     <dialog :open="edit">
-      <div>
+      <NoteForm @cancel="cancelNote" @save="saveNote" />
+      <!-- <div>
         <div>
           <label>Take Note:</label>
           <input
@@ -35,7 +36,7 @@
             name="Save"
           />
         </div>
-      </div>
+      </div> -->
     </dialog>
   </div>
 </template>
@@ -44,12 +45,13 @@
 import List from './List.vue';
 import Button from './Button.vue';
 import { useNoteStore } from '../store';
-
+import NoteForm from './NoteForm.vue';
 export default {
   name: 'Dashboard',
   components: {
     List,
     Button,
+    NoteForm,
   },
   props: {
     msg: String,
@@ -65,9 +67,11 @@ export default {
     openModal() {
       this.edit = true;
     },
-    saveNote(message) {
-      const id = this.store.notes[this.store.notes.length - 1]?.id || 1;
-      this.store.addNote({ id, message });
+    saveNote(note) {
+      if (!note.id) {
+        note.id = (this.store.notes[this.store.notes.length - 1]?.id || 0) + 1;
+      }
+      this.store.addNote(note);
       this.message = '';
       this.edit = false;
     },
