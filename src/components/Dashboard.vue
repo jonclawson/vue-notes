@@ -62,6 +62,9 @@ export default {
       this.edit = false;
     },
   },
+  mounted() {
+    this.store.getNotes();
+  }
 };
 </script>
 
