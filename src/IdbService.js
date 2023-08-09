@@ -117,7 +117,7 @@ export class IdbService {
         const transaction = db.transaction([store], 'readwrite');
 
         transaction.oncomplete = (event) => {
-          observe.next('items added');
+          observe.complete('items complete');
         };
 
         transaction.onerror = (event) => {

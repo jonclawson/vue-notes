@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { IdbService } from './IdbService';
-import {take} from 'rxjs'
 const schema = {
   stores: [
     {
@@ -33,8 +32,7 @@ export const useNoteStore = defineStore('notes', {
       if (!payload.id) {
         payload.id = (this.notes[this.notes.length - 1]?.id || 0) + 1;
       }
-      db.add([payload], 'notes').pipe(take(1)).subscribe((r) => {
-        console.log(r);
+      db.add([payload], 'notes').subscribe((r) => {
         this.notes.push(payload);
       });
     },
