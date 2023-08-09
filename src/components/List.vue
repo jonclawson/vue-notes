@@ -1,31 +1,42 @@
 <template>
   <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between" v-for="item in items">
-      {{item.id}} {{ item.message }} <Button @clickButton="() => removeNote(item)" className="btn-sm btn-danger" name="x" type="button" />
+    <li
+      class="list-group-item d-flex justify-content-between"
+      v-for="item in items"
+    >
+      <span @click="$emit('clickItem', item)"
+        >{{ item.id }} {{ item.message }}
+      </span>
+      <Button
+        @clickButton="() => removeNote(item)"
+        className="btn-sm btn-danger"
+        name="x"
+        type="button"
+      />
     </li>
   </ul>
 </template>
 
 <script>
 import { useNoteStore } from '../store';
-import Button from './Button.vue'
+import Button from './Button.vue';
 export default {
   name: 'List',
   components: {
-    Button
+    Button,
   },
   props: {
     items: Object,
   },
   data() {
     return {
-      store: useNoteStore()
-    }
+      store: useNoteStore(),
+    };
   },
   methods: {
     removeNote(note) {
-      this.store.removeNote(note)
-    }
-  }
+      this.store.removeNote(note);
+    },
+  },
 };
 </script>

@@ -9,9 +9,14 @@
         type="button"
       />
     </h1>
-    <List v-bind:items="store.notes" />
+    <List @clickItem="openModal" v-bind:items="store.notes" />
     <dialog :open="edit">
-      <NoteForm @cancel="cancelNote" @save="saveNote" />
+      <NoteForm
+        :key="editNote"
+        :editNote="editNote"
+        @cancel="cancelNote"
+        @save="saveNote"
+      />
     </dialog>
   </div>
 </template>
@@ -35,17 +40,25 @@ export default {
     return {
       store: useNoteStore(),
       edit: false,
+      editNote: null,
     };
   },
   methods: {
-    openModal() {
+    openModal(note) {
       this.edit = true;
+      this.editNote = Object.assign({}, note);
     },
     saveNote(note) {
-      this.store.addNote(note);
+      this.editNote = null;
+      if (note.id) {
+        this.store.updateNote(note);
+      } else {
+        this.store.addNote(note);
+      }
       this.edit = false;
     },
     cancelNote() {
+      this.editNote = null;
       this.edit = false;
     },
   },

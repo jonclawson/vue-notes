@@ -35,11 +35,11 @@ export default {
     Button,
   },
   props: {
-    noteId: Number,
+    editNote: Object,
   },
   data() {
     return {
-      note: { message: '' },
+      note: this.editNote || { message: '' },
     };
   },
   methods: {
