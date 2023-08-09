@@ -2,7 +2,7 @@
   <div>
     <div>
       <label>Take Note:</label>
-      <input
+      <textarea
         class="form-control"
         type="text"
         name="message"
