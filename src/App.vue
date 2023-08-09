@@ -2,7 +2,7 @@
   <div id="app">
     <Navbar />
     <div class="container">
-      <Dashboard msg="Notes" />
+      <Dashboard msg="Take Notes" />
     </div>
   </div>
 </template>
